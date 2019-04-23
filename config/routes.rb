@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :api do
-    nemespace :v1 do
+    namespace :v1 do
       resources :records
       resources :artists
     end
