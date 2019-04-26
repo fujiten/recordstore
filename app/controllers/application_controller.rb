@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
-  include JWTSettions::RailsAuthorzation
-  rescue_from JWTSettions::Errors::Unauthorized, with :not_authorized
+  include JWTSessions::RailsAuthorization
+  rescue_from JWTSessions::Errors::Unauthorized, with: :not_authorized
 
   private
 
@@ -10,6 +10,6 @@ class ApplicationController < ActionController::API
 
 
     def not_authorized
-      render json: { error: 'Not authorized'}. status: :unauthorized
+      render json: { error: 'Not authorized'}, status: :unauthorized
     end
 end
