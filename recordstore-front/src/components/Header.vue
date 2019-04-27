@@ -21,7 +21,7 @@
 export default {
   name: 'Header',
   created () {
-    this.signedIn()
+    // this.signedIn()
   },
   methods: {
     setError (error, text) {

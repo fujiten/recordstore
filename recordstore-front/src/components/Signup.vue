@@ -51,21 +51,21 @@ export default {
   methods: {
     signup () {
       this.$http.plain.post('/signup', {email: this.email, password: this.password, password_confirmation: this.password_confirmation})
-        .then(response => this.signinSuccesful(response))
-        .catch(error => this.signinFailed(error))
+        .then(response => this.signupSuccesful(response))
+        .catch(error => this.signupFailed(error))
     },
-    signinSuccesful (response) {
+    signupSuccesful (response) {
       if (!response.data.csrf) {
         this.signinFailed(response)
         return
       }
-
       localStorage.csrf = response.data.csrf
-      localStorage.signIn = true
+      localStorage.signedIn = true
+      console.log(localStorage.csrf)
       this.error = ''
       this.$router.replace('/records')
     },
-    signinFailed (error) {
+    signupFailed (error) {
       this.error = (error.response && error.response.data && error.response.data.error) || 'Something went wrong'
       delete localStorage.csrf
       delete localStorage.signedIn

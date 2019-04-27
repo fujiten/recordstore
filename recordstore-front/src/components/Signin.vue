@@ -47,15 +47,12 @@ export default {
       this.$http.plain.post('/signin', {email: this.email, password: this.password})
         .then(response => this.signinSuccesful(response))
         .catch(error => this.signinFailed(error))
-      console.log('signin?')
     },
     signinSuccesful (response) {
       if (!response.data.csrf) {
-        console.log('hi')
         this.signinFailed(response)
         return
       }
-      console.log(this)
       localStorage.csrf = response.data.csrf
       localStorage.signedIn = true
       this.error = ''

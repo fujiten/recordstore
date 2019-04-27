@@ -1,12 +1,13 @@
 module Api 
   module V1
     class RecordsController < ApplicationController
+      # IMO, authorize_accsess_request! sets payload
       before_action :authorize_access_request!
       before_action :set_record, only: [:show, :update, :destroy]
 
       # GET /records
       def index
-        @records = current_user.record.all
+        @records = current_user.records.all
 
         render json: @records
       end
@@ -21,7 +22,7 @@ module Api
         @record = current_user.records.build(record_params)
 
         if @record.save
-          render json: @record, status: :created, location: @record
+          render json: @record, status: :created
         else
           render json: @record.errors, status: :unprocessable_entity
         end
